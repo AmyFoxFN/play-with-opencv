@@ -2,24 +2,35 @@
 
 ## Draft
 
-fusion 用 open cv 干嘛？
+What OpenCV can do?
 
-- 改图像
+- Image Processing: `Modify image`
+- Video Analysis ?
+- Object Detection: [perception] `Detect object` (for one moment: image)
+- Object Tracking: [perception] `Track object` (for a series of moment: video)
 
-  - 修改的范围
-    - 修改粒度
-      - 像素级任意图形：mask
-        - 怎么找到这个任意图形
-          - 对图像里的像素进行扫描，找到想要的像素集
-        - 有人找到，交给你
-          - sam model 可以给你
-          - open cv 的 object detect 可以给你
-      - 规则图形
-        - rectangle
-  - 修改像素值
-    - 修改粒度
-      - 整个范围，用一个颜色。
-      - 每个像素，用一个颜色。
+What is used in our project?
+
+- `Modify image`
+- `Detect object`
+
+What means `Modify image`?
+
+- 修改的范围
+  - 修改粒度
+    - 像素级任意图形：mask
+      - 怎么找到这个任意图形
+        - 对图像里的像素进行扫描，找到想要的像素集
+      - 有人找到，交给你
+        - sam model 可以给你
+        - open cv 的 object detect 可以给你
+    - 规则图形
+      - rectangle
+- 修改像素值
+
+  - 修改粒度
+    - 整个范围，用一个颜色。
+    - 每个像素，用一个颜色。
 
 - 维度
 - row range
