@@ -19,7 +19,14 @@
     <script src="https://docs.opencv.org/4.5.1/opencv.js" type="text/javascript"></script>
     <script type="text/javascript">
         cv.onRuntimeInitialized = () => {
-          const mask = new cv.Mat()
+          const blueColor = new cv.Scalar(0, 0, 255, 255)
+          const whiteColor = new cv.Scalar(255, 255, 255, 255)
+          const mask = new cv.Mat(150, 300, cv.CV_8UC4, whiteColor)
+          horizonLine = mask.rowRange(30,32)
+          horizonLine.setTo(blueColor)
+          verticalLine = mask.colRange(30,32)
+          verticalLine.setTo(blueColor)
+          cv.imshow("canvasOutput", mask);
         }
     </script>
   </body>
