@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>OpenCV.js Playground</title>
+    <style>
+      canvas {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <div class="inputoutput">
+        <div class="caption">srcMask:</div>
+        <canvas id="srcMask" ></canvas>
+        <div class="caption">dilated by kernel size(5, 5):</div>
+        <canvas id="dstMask1" ></canvas>
+        <!-- <div class="caption">dilated with kernel size(10, 10):</div>
+        <canvas id="dstMask2" ></canvas> -->
+      </div>
+    </div> 
+    <script src="https://docs.opencv.org/4.5.1/opencv.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        cv.onRuntimeInitialized = () => {
+          const whiteColor = new cv.Scalar(255)
+          const blackColor = new cv.Scalar(0)
+          const mask = new cv.Mat(150, 300, cv.CV_8UC1, blackColor)
+          horizonLine = mask.rowRange(30,32)
+          horizonLine.setTo(whiteColor)
+          verticalLine = mask.colRange(30,32)
+          verticalLine.setTo(whiteColor)
+          cv.imshow("srcMask", mask);
+
+          const src = mask
+          // Define the kernel for dilation
+          const kernelSize = new cv.Size(5, 5); // You can adjust the kernel size as needed
+          const kernel = cv.getStructuringElement(cv.MORPH_RECT, kernelSize);
+
+          // Apply dilation to the mask
+          const dst = new cv.Mat();
+          cv.dilate(src, dst, kernel, new cv.Point(-1, -1), 1, cv.BORDER_CONSTANT, cv.morphologyDefaultBorderValue());
+
+          // Display the dilated mask on the canvas
+          cv.imshow('dstMask1', dst);
+
+          // Release the memory
+          src.delete();
+          dst.delete();
+        }
+    </script>
+  </body>
+</html>
